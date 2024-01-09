@@ -1,16 +1,17 @@
-import React from "react";
 import Sidebar from "./sidebar";
 import CenterView from "./centerView";
 import EditorNavbar from "./editorNavbar";
+import Bottombar from "./bottombar";
 
 export default function MockupEditor() {
   return (
     <>
-    <EditorNavbar/>
+      <EditorNavbar />
       <div className="flex ">
-<CenterView/>
-<Sidebar/>
+        <CenterView />
+        <Sidebar />
       </div>
+      <Bottombar />
     </>
   );
 }
