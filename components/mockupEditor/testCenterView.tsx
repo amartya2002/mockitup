@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
-import usePaddingStore from "@/app/store/mockStore";
+import usePaddingStore from "@/app/store/mockupEditStore";
 
 const ImageEditor = () => {
   const { paddingSize } = usePaddingStore();

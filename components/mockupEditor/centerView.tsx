@@ -2,19 +2,26 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
-import usePaddingStore from "@/app/store/mockStore";
-
+import {
+  usePaddingStore,
+  useImgRoundedStore, usePaddingRoundedStore
+} from "@/app/store/mockupEditStore";
 const ImageEditor = () => {
   const { paddingSize } = usePaddingStore();
+  const { imgRounded } = useImgRoundedStore();
+  const { paddingRounded } = usePaddingRoundedStore();
+
 
   const [image, setImage] = useState<string | null>(null);
   const { getRootProps, getInputProps } = useDropzone({
-    onDrop: (acceptedFiles) => {
+    onDrop: (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        setImage(e.target.result);
+        if (e.target?.result) {
+          setImage(e.target.result as string);
+        }
       };
 
       reader.readAsDataURL(file);
@@ -28,7 +35,6 @@ const ImageEditor = () => {
   return (
     <div className="w-full bg-zin-200 py-4 px-8 mb-12">
       {!image ? (
-        // Dropzone
         <div
           {...getRootProps()}
           className="w-72 mx-auto mt-6 justify-center items-center flex h-full"
@@ -63,15 +69,23 @@ const ImageEditor = () => {
           </div>
         </div>
       ) : (
+        // <MyDropzone/>
         //  Image display
         <div className=" flex justify-center items-center max-w-xl  mx-auto h-full  ">
           <div
             className=" rounded-xl bg-stone-200 "
             style={{
               padding: `${paddingSize}px`,
+              borderRadius: `${paddingRounded}px`,
             }}
           >
-            <img src={image} alt="Uploaded" />
+            <img
+              src={image}
+              alt="Uploaded"
+              style={{
+                borderRadius: `${imgRounded}px`,
+              }}
+            />
           </div>
 
           {/* Reset button */}
