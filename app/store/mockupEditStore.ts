@@ -10,6 +10,33 @@ const usePaddingStore = create<PaddingStore>((set) => ({
   setPaddingSize: (newSize) => set({ paddingSize: newSize }),
 }));
 
+// ---------------------------------
+type BorderStore = {
+  innerBorderSize: number;
+  setInnerBorderSize: (newSize: number) => void;
+};
+
+const useBorderStore = create<BorderStore>((set) => ({
+  innerBorderSize: 0,
+  setInnerBorderSize: (newSize) => set({ innerBorderSize: newSize }),
+}));
+// ---------------------------------
+// ---------------------------------
+
+type ColorStoreState = {
+  selectedColor: string;
+  setSelectedColor: (color: string) => void;
+}
+
+const useColorStore = create<ColorStoreState>((set) => ({
+  selectedColor: "linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))",
+  setSelectedColor: (color) => set({ selectedColor: color }),
+}));
+
+// ---------------------------------
+// ---------------------------------
+
+
 type ImgRoundedStore = {
   imgRounded: number;
   setImgRounded: (newSize: number) => void;
@@ -51,4 +78,6 @@ export {
   useImgRoundedStore,
   usePaddingRoundedStore,
   useImageStore,
+  useBorderStore,
+  useColorStore
 };
