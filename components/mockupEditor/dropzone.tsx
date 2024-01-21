@@ -1,78 +1,60 @@
-import React, {useEffect, useState} from 'react';
-import {useDropzone} from 'react-dropzone';
+"use client"
+import { useDropzone } from "react-dropzone";
+import { useImageStore } from "@/app/store/mockupEditStore";
 
-const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16
-};
+export default function dropzone() {
+  // const [image, setImage] = useState<string | null>(null);
+  const { image, setImage } = useImageStore();
+  const { isUploaded, setUploaded } = useImageStore();
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop: (acceptedFiles: File[]) => {
+      const file = acceptedFiles[0];
+      const reader = new FileReader();
 
-const thumb = {
-  display: 'inline-flex',
-  borderRadius: 2,
-  border: '1px solid #eaeaea',
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: 'border-box'
-};
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          setImage(e.target.result as string);
+          setUploaded(true);
+        }
+      };
 
-const thumbInner = {
-  display: 'flex',
-  minWidth: 0,
-  overflow: 'hidden'
-};
-
-const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%'
-};
-
-
-function Previews(props: any) {
-  const [files, setFiles] = useState([]);
-  const {getRootProps, getInputProps} = useDropzone({
-    accept: {
-      'image/*': []
+      reader.readAsDataURL(file);
     },
-    onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })));
-    }
   });
-  
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
-          src={file.preview}
-          style={img}
-          // Revoke data uri after image is loaded
-          onLoad={() => { URL.revokeObjectURL(file.preview) }}
-        />
+
+  const resetImage = () => {
+    setImage(null);
+    setUploaded(false);
+  };
+  return (
+    <div
+      {...getRootProps()}
+      className="w-72 mx-auto mt-6 justify-center items-center flex h-full"
+    >
+      <div className="flex flex-col items-center justify-center w-full h-32 rounded-xl cursor-pointer bg-zinc-50 hover:bg-zinc-100 border-b">
+        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+          <svg
+            className="w-10 h-10 mb-3 text-blue-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+            ></path>
+          </svg>
+          <p className="mb-2 text-sm text-zinc-500 dark:text-zinc-400">
+            <span className="font-semibold text-blue-500">Click to upload</span>{" "}
+            or drag and drop
+          </p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">TEST MODE</p>
+        </div>
+        <input {...getInputProps()} type="file" className="hidden" />
       </div>
     </div>
-  ));
-
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, []);
-
-  return (
-    <section className="container">
-      <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      </div>
-      <aside style={thumbsContainer}>
-        {thumbs}
-      </aside>
-    </section>
   );
 }
