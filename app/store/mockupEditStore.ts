@@ -1,4 +1,19 @@
 import { create } from "zustand";
+import {persist} from "zustand/middleware"
+
+const mockupStore = create(
+  persist(()=>({
+    outerPadding: 24, // Background Padding / Background
+    outerCornerRadius: 0,
+    innerBorder: 0,       // Image Border / Border
+    innerCornerRadius:0,
+  }),{
+    name: "User Preference"
+  })
+)
+
+
+
 
 type PaddingStore = {
   paddingSize: number;
@@ -74,10 +89,8 @@ const useImageStore = create<Image>((set) => ({
 }));
 
 export {
-  usePaddingStore,
   useImgRoundedStore,
   usePaddingRoundedStore,
   useImageStore,
-  useBorderStore,
-  useColorStore
+  useColorStore, mockupStore
 };
