@@ -7,6 +7,12 @@ const mockupStore = create(
     outerCornerRadius: 0,
     innerBorder: 0,       // Image Border / Border
     innerCornerRadius:0,
+    shadowx: 0,
+    shadowy: 0,
+    shadowz: 0,
+    shadowk: -20,
+
+
   }),{
     name: "User Preference"
   })

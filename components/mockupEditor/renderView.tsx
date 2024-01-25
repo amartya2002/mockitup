@@ -14,7 +14,12 @@ export default function renderView() {
   const innerBorder = mockupStore((state) => state.innerBorder);
   const outerCornerRadius = mockupStore((state) => state.outerCornerRadius);
   const innerCornerRadius = mockupStore((state) => state.innerCornerRadius);
-  const backgroundColor = 'linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))';
+
+  const shadowx = mockupStore((state) => state.shadowx);
+  const shadowy = mockupStore((state) => state.shadowy);
+  const shadowz = mockupStore((state) => state.shadowz);
+  const shadowk = mockupStore((state) => state.shadowk);
+
 
   return (
     <div className=" flex justify-center items-center max-w-xl  mx-auto h-full  ">
@@ -30,6 +35,7 @@ export default function renderView() {
             borderRadius: `${innerCornerRadius}px`,
             // padding: `${innerBorderSize}px`,
             padding: `${innerBorder}px`,
+            boxShadow: `${shadowx}px ${shadowy}px ${shadowz}px ${shadowk}px #000`,
 
 
           }}

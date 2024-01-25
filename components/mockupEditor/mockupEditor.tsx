@@ -11,7 +11,7 @@ export default function MockupEditor() {
         <CenterViewTest/>
         <Sidebar />
       </div>
-      <Bottombar />
+      {/* <Bottombar /> */}
     </>
   );
 }
