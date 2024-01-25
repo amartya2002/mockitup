@@ -9,9 +9,9 @@ export default function MockupEditor() {
       <EditorNavbar />
       <div className="flex ">
         <CenterViewTest/>
-        <Sidebar />
+        {/* <Sidebar /> */}
       </div>
-      {/* <Bottombar /> */}
+      <Bottombar />
     </>
   );
 }
