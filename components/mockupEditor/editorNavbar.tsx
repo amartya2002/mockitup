@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
-import { Button } from "../ui/button";
-import { useImageStore } from "@/app/store/mockupEditStore";
+import React, { useRef } from "react";
 import Link from "next/link";
 import ResetModal from "./resetModal";
 
 export default function EditorNavbar() {
+
+
   return (
     <header>
       <div className="px-8 py-1.5 max-w-7xl mx-auto flex justify-between border items-center">
@@ -16,6 +16,8 @@ export default function EditorNavbar() {
         </div>
         <div>
           <ResetModal />
+
+
         </div>
       </div>
     </header>
