@@ -13,7 +13,7 @@ import { useImageStore } from "@/app/store/mockupEditStore";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { toast } from "sonner";
 
-export default function resetModal() {
+export default function ResetModal() {
   const { isUploaded } = useImageStore();
   const { resetImage } = useImageStore();
 

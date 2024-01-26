@@ -5,7 +5,7 @@ import {
 } from "@/app/store/mockupEditStore";
 import React from "react";
 
-export default function renderView() {
+export default function RenderView() {
 
 
   const { image } = useImageStore();

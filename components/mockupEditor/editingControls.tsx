@@ -10,7 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { ComboboxDemo } from "./paddingColorOptions";
 
 export default function EditingControls() {
   const outerCornerRadius = mockupStore((state) => state.outerCornerRadius);

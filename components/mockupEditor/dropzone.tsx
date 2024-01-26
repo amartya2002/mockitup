@@ -2,7 +2,7 @@
 import { useDropzone } from "react-dropzone";
 import { useImageStore } from "@/app/store/mockupEditStore";
 
-export default function dropzone() {
+export default function Dropzone() {
   // const [image, setImage] = useState<string | null>(null);
   const { image, setImage } = useImageStore();
   const { isUploaded, setUploaded } = useImageStore();

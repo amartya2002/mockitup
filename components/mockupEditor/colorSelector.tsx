@@ -67,6 +67,7 @@ export default function ColorSelector() {
 
           {colorOptions.map((option) => (
             <SelectItem
+            key={option.label}
               value={option.gradient}
               style={{ background: option.gradient }}
               className="h-6 mb-1.5 rounded hover:scale-95 duration-150"

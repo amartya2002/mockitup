@@ -2,7 +2,7 @@
 import { useImageStore } from "@/app/store/mockupEditStore";
 import Dropzone from "./dropzone";
 import RenderView from "./renderView";
-export default function centerViewTest() {
+export default function CenterViewTest() {
   const { isUploaded } = useImageStore();
 
   return (

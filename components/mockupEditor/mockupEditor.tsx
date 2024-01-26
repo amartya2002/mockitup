@@ -9,9 +9,15 @@ export default function MockupEditor() {
       <EditorNavbar />
       <div className="flex ">
         <CenterViewTest/>
-        {/* <Sidebar /> */}
+        <div className="hidden md:block">
+
+        <Sidebar />
+        </div>
       </div>
+      <div className="md:hidden">
+
       <Bottombar />
+      </div>
     </>
   );
 }
