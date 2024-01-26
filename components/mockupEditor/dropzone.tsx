@@ -1,11 +1,10 @@
-"use client"
+"use client";
 import { useDropzone } from "react-dropzone";
 import { useImageStore } from "@/app/store/mockupEditStore";
 
 export default function Dropzone() {
-  // const [image, setImage] = useState<string | null>(null);
-  const { image, setImage } = useImageStore();
-  const { isUploaded, setUploaded } = useImageStore();
+  const { setImage } = useImageStore();
+  const { setUploaded } = useImageStore();
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];

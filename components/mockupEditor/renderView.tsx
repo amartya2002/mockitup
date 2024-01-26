@@ -16,15 +16,10 @@ export default function RenderView() {
   const innerBorder = mockupStore((state) => state.innerBorder);
   const outerCornerRadius = mockupStore((state) => state.outerCornerRadius);
   const innerCornerRadius = mockupStore((state) => state.innerCornerRadius);
-
   const shadowx = mockupStore((state) => state.shadowx);
   const shadowy = mockupStore((state) => state.shadowy);
   const shadowz = mockupStore((state) => state.shadowz);
   const shadowk = mockupStore((state) => state.shadowk);
-  // let isToggled = useToggleStore((state) => state.isToggled);
-
-
-
 
 // Download
 const ref = useRef<HTMLDivElement>(null)
@@ -49,6 +44,9 @@ const onButtonClick = useCallback(() => {
 }, [ref])
 
   return (
+    <>
+      <button onClick={onButtonClick}>Hello</button>
+
     <div className=" flex justify-center items-center max-w-xl  mx-auto h-full  ">
       <div ref={ref}
         style={{
@@ -75,13 +73,7 @@ const onButtonClick = useCallback(() => {
           />
         </div>
       </div>
-      {/* <button onClick={onButtonClick}>Click me</button> */}
-      {/* <button onClick={toggleState}>Toggle State</button> */}
-      <button onClick={onButtonClick}>Hello</button>
-
-      {/* <p>Toggle State: {isToggled ? 'True' : 'False'}</p> */}
-
-
     </div>
+    </>
   );
 }

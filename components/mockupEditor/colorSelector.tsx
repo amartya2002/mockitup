@@ -52,7 +52,7 @@ export default function ColorSelector() {
   const { selectedColor, setSelectedColor } = useColorStore();
 
   return (
-    <Select value={selectedColor} onValueChange={setSelectedColor} >
+    <Select value={selectedColor} onValueChange={setSelectedColor}>
       <SelectTrigger
         className="w[50px]"
         style={{
@@ -67,7 +67,7 @@ export default function ColorSelector() {
 
           {colorOptions.map((option) => (
             <SelectItem
-            key={option.label}
+              key={option.label}
               value={option.gradient}
               style={{ background: option.gradient }}
               className="h-6 mb-1.5 rounded hover:scale-95 duration-150"
