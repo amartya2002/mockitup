@@ -18,7 +18,9 @@ export default function EditorNavbar() {
         </div>
         <div className="space-x-2">
           <ResetModal />
-          <Button size="sm"  onClick={exportImage}>Export</Button>
+          <Button size="sm" onClick={exportImage}>
+            Export
+          </Button>
         </div>
       </div>
     </header>

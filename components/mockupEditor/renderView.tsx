@@ -2,20 +2,22 @@
 import {
   useImageStore,
   useColorStore,
-  mockupStore, useImageExportStore
+  mockupStore,
+  useImageExportStore,
 } from "@/app/store/mockupEditStore";
-import React, { useCallback, useEffect, useRef } from "react";
-import { toPng } from "html-to-image";
-
-
+import { useEffect, useRef } from "react";
 
 export default function RenderView() {
   const divRef = useRef(null);
+
+  // Current Download Functionality Starts
   const { setTargetDivRef } = useImageExportStore();
+
   useEffect(() => {
     setTargetDivRef(divRef.current);
   }, [setTargetDivRef]);
-  
+  // Current Download Functionality Ends
+
   const { image } = useImageStore();
   const { selectedColor } = useColorStore();
   const outerPadding = mockupStore((state) => state.outerPadding);
@@ -27,34 +29,30 @@ export default function RenderView() {
   const shadowz = mockupStore((state) => state.shadowz);
   const shadowk = mockupStore((state) => state.shadowk);
 
-// Download
-const ref = useRef<HTMLDivElement>(null)
+  ///// Previous Download Functionality//////
+  // const ref = useRef<HTMLDivElement>(null);
 
+  // const onButtonClick = useCallback(() => {
 
-const onButtonClick = useCallback(() => {
-
-  if (ref.current === null) {
-    return
-  }
-// isToggled=false
-  toPng(ref.current, { cacheBust: true, })
-    .then((dataUrl) => {
-      const link = document.createElement('a')
-      link.download = 'mockitup.png'
-      link.href = dataUrl
-      link.click()
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}, [ref])
+  //   if (ref.current === null) {
+  //     return
+  //   }
+  //   toPng(ref.current, { cacheBust: true, })
+  //     .then((dataUrl) => {
+  //       const link = document.createElement('a')
+  //       link.download = 'mockitup.png'
+  //       link.href = dataUrl
+  //       link.click()
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }, [ref])
 
   return (
-    <>
-      <button onClick={onButtonClick}>Hello</button>
-
     <div className=" flex justify-center items-center max-w-xl  mx-auto h-full  ">
-      <div ref={divRef}
+      <div
+        ref={divRef}
         style={{
           padding: `${outerPadding}px`,
           borderRadius: `${outerCornerRadius}px`,
@@ -65,7 +63,6 @@ const onButtonClick = useCallback(() => {
           className="bg-zinc-500/70 backdrop-blur-lg"
           style={{
             borderRadius: `${innerCornerRadius}px`,
-            // padding: `${innerBorderSize}px`,
             padding: `${innerBorder}px`,
             boxShadow: `${shadowx}px ${shadowy}px ${shadowz}px ${shadowk}px #000`,
           }}
@@ -80,7 +77,5 @@ const onButtonClick = useCallback(() => {
         </div>
       </div>
     </div>
-    {/* <button onClick={exportImage}>Export Image</button> */}
-    </>
   );
 }

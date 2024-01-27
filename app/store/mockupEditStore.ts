@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import domToImage from 'dom-to-image';
-import { MutableRefObject } from 'react';
+import domToImage from "dom-to-image";
+import { MutableRefObject } from "react";
 const mockupStore = create(
   persist(
     () => ({
@@ -48,34 +48,37 @@ const useImageStore = create<Image>((set) => ({
   resetImage: () => set({ image: null, isUploaded: false }),
 }));
 
-const useImageExportStore = create((set) => ({
+interface ImageExportStoreState {
+  targetDivRef: any;
+  setTargetDivRef: any;
+  exportImage: any;
+}
+
+const useImageExportStore = create<ImageExportStoreState>((set) => ({
   targetDivRef: null,
-  setTargetDivRef: (ref) => set({ targetDivRef: ref }),
+  setTargetDivRef: (ref: any) => set({ targetDivRef: ref }),
   exportImage: () => {
     const { targetDivRef } = useImageExportStore.getState();
     if (!targetDivRef) {
-      console.error('Target div reference is not set');
+      console.error("Target div reference is not set");
       return;
     }
 
-    domToImage.toPng(targetDivRef)
+    domToImage
+      .toPng(targetDivRef)
       .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.download = 'mockitup.png';
+        const link = document.createElement("a");
+        link.download = "mockitup.png";
         link.href = dataUrl;
         link.click();
       })
       .catch((error) => {
-        console.error('Error exporting image:', error);
+        console.error("Error exporting image:", error);
       });
   },
 }));
 
-
 export { useImageStore, useColorStore, mockupStore, useImageExportStore };
-
-
-
 
 // const useToggleStore = create((set) => ({
 //   isToggled: false,
@@ -106,8 +109,6 @@ export { useImageStore, useColorStore, mockupStore, useImageExportStore };
 // ---------------------------------
 // ---------------------------------
 
-
-
 // ---------------------------------
 // ---------------------------------
 
@@ -130,5 +131,3 @@ export { useImageStore, useColorStore, mockupStore, useImageExportStore };
 //   paddingRounded: 0,
 //   setPaddingRounded: (newSize) => set({ paddingRounded: newSize }),
 // }));
-
-
