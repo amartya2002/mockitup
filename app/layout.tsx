@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -18,9 +19,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} `}>
-        <main>{children}</main>
-        <Toaster />
+      <body className={`${inter.className} bg-gradient-to-tr from-red-100 to-white dark:from-sky-950 dark:to-black`}>
+        <ThemeProvider
+      
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main>{children}</main>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -25,7 +25,7 @@ export default function ResetModal() {
   return (
     <Dialog>
       <DialogTrigger disabled={!isUploaded} asChild>
-        <Button disabled={!isUploaded} variant="outline" size="sm">
+        <Button className=" rounded-lg  hover:text-blue-400 border border-zinc-200 dark:border-zinc-600 dark:hover:bg-zinc-800 shadow-none" disabled={!isUploaded} variant="outline" size="sm">
           Pick New
         </Button>
       </DialogTrigger>

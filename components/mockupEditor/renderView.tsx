@@ -50,7 +50,7 @@ export default function RenderView() {
   // }, [ref])
 
   return (
-    <div className=" flex justify-center items-center max-w-xl  mx-auto h-full  ">
+    <div className=" flex justify-center items-center max-w-xl  mx-auto h-full   ">
       <div
         ref={divRef}
         style={{

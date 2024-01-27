@@ -6,7 +6,7 @@ export default function CenterViewTest() {
   const { isUploaded } = useImageStore();
 
   return (
-    <div className="w-full bg-zin-200 py-4 px-8 mb-12">
+    <div className="w-full bg-zin-200 py-4 px-8 mb-12 ">
       {!isUploaded ? <Dropzone /> : <RenderView />}
     </div>
   );

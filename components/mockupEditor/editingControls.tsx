@@ -24,13 +24,13 @@ export default function EditingControls() {
     <>
       <div className="py-8 px-6 space-y-8">
         <div>
-          <Label className="text-gray-600 block mb-3">Padding Color</Label>
+          <Label className=" block mb-3">Padding Color</Label>
           <ColorSelector />
         </div>
 
         {/* Outer Padding */}
         <div>
-          <Label className="text-gray-600 block mb-6">Padding</Label>
+          <Label className=" block mb-6">Padding</Label>
           <Slider
             max={100}
             step={1}
@@ -44,7 +44,7 @@ export default function EditingControls() {
 
         {/* Outer Corner Radius  */}
         <div>
-          <Label className="text-gray-600 block mb-6">
+          <Label className=" block mb-6">
             Outer Corner Radius
           </Label>
           <Slider
@@ -60,7 +60,7 @@ export default function EditingControls() {
 
         {/* Inner Border */}
         <div>
-          <Label className="text-gray-600 block mb-6">Image Border</Label>
+          <Label className=" block mb-6">Image Border</Label>
           <Slider
             max={100}
             step={1}
@@ -74,7 +74,7 @@ export default function EditingControls() {
 
         {/* Inner Corner Radius */}
         <div>
-          <Label className="text-gray-600 block mb-6">
+          <Label className=" block mb-6">
             Image Corner Radius
           </Label>
           <Slider
@@ -96,7 +96,7 @@ export default function EditingControls() {
             <AccordionContent>
               <div className="space-y-6">
                 <div>
-                  <Label className="text-gray-600 block mb-6">Shadowx</Label>
+                  <Label className=" block mb-6">Shadowx</Label>
                   <Slider
                     max={100}
                     step={1}
@@ -108,7 +108,7 @@ export default function EditingControls() {
                   />
                 </div>
                 <div>
-                  <Label className="text-gray-600 block mb-6">Shadowy</Label>
+                  <Label className=" block mb-6">Shadowy</Label>
                   <Slider
                     max={100}
                     step={1}
@@ -120,7 +120,7 @@ export default function EditingControls() {
                   />
                 </div>
                 <div>
-                  <Label className="text-gray-600 block mb-6">Shadowz</Label>
+                  <Label className=" block mb-6">Shadowz</Label>
                   <Slider
                     max={100}
                     step={1}
@@ -132,7 +132,7 @@ export default function EditingControls() {
                   />
                 </div>
                 <div>
-                  <Label className="text-gray-600 block mb-6">ShadowK</Label>
+                  <Label className=" block mb-6">ShadowK</Label>
                   <Slider
                     max={100}
                     min={-100}

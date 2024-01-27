@@ -3,7 +3,7 @@ import EditingControls from "./editingControls";
 
 export default function Sidebar() {
   return (
-    <aside className="bg-zin-50 w-[15rem] md:w-[19rem] h-screen border-l-2 overflow-auto  ">
+    <aside className="dark:bg-black/10  w-[15rem] md:w-[19rem] h-screen overflow-auto border-l dark:border-zinc-900 border-zinc-100  ">
       <EditingControls />
     </aside>
   );
