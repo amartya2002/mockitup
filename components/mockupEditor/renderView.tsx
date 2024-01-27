@@ -2,14 +2,20 @@
 import {
   useImageStore,
   useColorStore,
-  mockupStore, 
+  mockupStore, useImageExportStore
 } from "@/app/store/mockupEditStore";
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { toPng } from "html-to-image";
 
 
 
 export default function RenderView() {
+  const divRef = useRef(null);
+  const { setTargetDivRef } = useImageExportStore();
+  useEffect(() => {
+    setTargetDivRef(divRef.current);
+  }, [setTargetDivRef]);
+  
   const { image } = useImageStore();
   const { selectedColor } = useColorStore();
   const outerPadding = mockupStore((state) => state.outerPadding);
@@ -48,7 +54,7 @@ const onButtonClick = useCallback(() => {
       <button onClick={onButtonClick}>Hello</button>
 
     <div className=" flex justify-center items-center max-w-xl  mx-auto h-full  ">
-      <div ref={ref}
+      <div ref={divRef}
         style={{
           padding: `${outerPadding}px`,
           borderRadius: `${outerCornerRadius}px`,
@@ -74,6 +80,7 @@ const onButtonClick = useCallback(() => {
         </div>
       </div>
     </div>
+    {/* <button onClick={exportImage}>Export Image</button> */}
     </>
   );
 }

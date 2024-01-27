@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
+import domToImage from 'dom-to-image';
+import { MutableRefObject } from 'react';
 const mockupStore = create(
   persist(
     () => ({
@@ -19,6 +20,62 @@ const mockupStore = create(
     }
   )
 );
+
+type ColorStoreState = {
+  selectedColor: string;
+  setSelectedColor: (color: string) => void;
+};
+
+const useColorStore = create<ColorStoreState>((set) => ({
+  selectedColor:
+    "linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))",
+  setSelectedColor: (color) => set({ selectedColor: color }),
+}));
+
+interface Image {
+  image: string | null;
+  setImage: (image: string | null) => void;
+  isUploaded: boolean;
+  setUploaded: (value: boolean) => void;
+  resetImage: () => void;
+}
+
+const useImageStore = create<Image>((set) => ({
+  image: null,
+  setImage: (image) => set({ image }),
+  isUploaded: false,
+  setUploaded: (value) => set({ isUploaded: value }),
+  resetImage: () => set({ image: null, isUploaded: false }),
+}));
+
+const useImageExportStore = create((set) => ({
+  targetDivRef: null,
+  setTargetDivRef: (ref) => set({ targetDivRef: ref }),
+  exportImage: () => {
+    const { targetDivRef } = useImageExportStore.getState();
+    if (!targetDivRef) {
+      console.error('Target div reference is not set');
+      return;
+    }
+
+    domToImage.toPng(targetDivRef)
+      .then((dataUrl) => {
+        const link = document.createElement('a');
+        link.download = 'mockitup.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((error) => {
+        console.error('Error exporting image:', error);
+      });
+  },
+}));
+
+
+export { useImageStore, useColorStore, mockupStore, useImageExportStore };
+
+
+
 
 // const useToggleStore = create((set) => ({
 //   isToggled: false,
@@ -49,16 +106,7 @@ const mockupStore = create(
 // ---------------------------------
 // ---------------------------------
 
-type ColorStoreState = {
-  selectedColor: string;
-  setSelectedColor: (color: string) => void;
-};
 
-const useColorStore = create<ColorStoreState>((set) => ({
-  selectedColor:
-    "linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))",
-  setSelectedColor: (color) => set({ selectedColor: color }),
-}));
 
 // ---------------------------------
 // ---------------------------------
@@ -83,20 +131,4 @@ const useColorStore = create<ColorStoreState>((set) => ({
 //   setPaddingRounded: (newSize) => set({ paddingRounded: newSize }),
 // }));
 
-interface Image {
-  image: string | null;
-  setImage: (image: string | null) => void;
-  isUploaded: boolean;
-  setUploaded: (value: boolean) => void;
-  resetImage: () => void;
-}
 
-const useImageStore = create<Image>((set) => ({
-  image: null,
-  setImage: (image) => set({ image }),
-  isUploaded: false,
-  setUploaded: (value) => set({ isUploaded: value }),
-  resetImage: () => set({ image: null, isUploaded: false }),
-}));
-
-export { useImageStore, useColorStore, mockupStore };
