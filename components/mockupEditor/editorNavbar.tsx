@@ -11,8 +11,8 @@ export default function EditorNavbar() {
   const { exportImage } = useImageExportStore();
 
   return (
-    <header>
-      <div className="px-3 sm:px-8 py-2 max-w-7xl mx-auto flex justify-between items-center">
+    <header className="fixe w-full ">
+      <div className="px-3 sm:px-8 py-2 max-w-7xl mx-auto flex justify-between items-center ">
         <div>
           <Link href="/" className="font-medium text-xl font-sans">
             Mockup <span className="text-zinc-400">Editor</span>

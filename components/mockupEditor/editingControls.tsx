@@ -19,6 +19,8 @@ export default function EditingControls() {
   const shadowy = mockupStore((state) => state.shadowy);
   const shadowz = mockupStore((state) => state.shadowz);
   const shadowk = mockupStore((state) => state.shadowk);
+  const zoom = mockupStore((state) => state.zoom);
+
 
   return (
     <>
@@ -28,12 +30,38 @@ export default function EditingControls() {
           <ColorSelector />
         </div>
 
+
+        <div>
+          <Label className=" block mb-6">Zoom {zoom} </Label>
+          <Slider
+            max={1000}
+            step={1}
+            min={0}
+            value={[zoom]}
+            onValueChange={([zoom]) =>
+              mockupStore.setState({ zoom })
+            }
+            className="w-full"
+          />
+        </div>
+
+
+
+
+
+
+
+
+
+
+
         {/* Outer Padding */}
         <div>
-          <Label className=" block mb-6">Padding</Label>
+          <Label className=" block mb-6">Padding {outerPadding} </Label>
           <Slider
             max={100}
             step={1}
+            min={0}
             value={[outerPadding]}
             onValueChange={([outerPadding]) =>
               mockupStore.setState({ outerPadding })
@@ -45,11 +73,12 @@ export default function EditingControls() {
         {/* Outer Corner Radius  */}
         <div>
           <Label className=" block mb-6">
-            Outer Corner Radius
+            Outer Corner Radius {outerCornerRadius}
           </Label>
           <Slider
             max={100}
             step={1}
+            min={0}
             value={[outerCornerRadius]}
             onValueChange={([outerCornerRadius]) =>
               mockupStore.setState({ outerCornerRadius })
@@ -60,7 +89,7 @@ export default function EditingControls() {
 
         {/* Inner Border */}
         <div>
-          <Label className=" block mb-6">Image Border</Label>
+          <Label className=" block mb-6">Image Border {innerBorder}</Label>
           <Slider
             max={100}
             step={1}
@@ -75,7 +104,7 @@ export default function EditingControls() {
         {/* Inner Corner Radius */}
         <div>
           <Label className=" block mb-6">
-            Image Corner Radius
+            Image Corner Radius {innerCornerRadius}
           </Label>
           <Slider
             max={100}
@@ -96,10 +125,11 @@ export default function EditingControls() {
             <AccordionContent>
               <div className="space-y-6">
                 <div>
-                  <Label className=" block mb-6">Shadowx</Label>
+                  <Label className=" block mb-6">Shadowx {shadowx}</Label>
                   <Slider
                     max={100}
                     step={1}
+                    min={-100}
                     value={[shadowx]}
                     onValueChange={([shadowx]) =>
                       mockupStore.setState({ shadowx })
@@ -108,10 +138,11 @@ export default function EditingControls() {
                   />
                 </div>
                 <div>
-                  <Label className=" block mb-6">Shadowy</Label>
+                  <Label className=" block mb-6">Shadowy {shadowy}</Label>
                   <Slider
                     max={100}
                     step={1}
+                    min={-100}
                     value={[shadowy]}
                     onValueChange={([shadowy]) =>
                       mockupStore.setState({ shadowy })
@@ -120,7 +151,7 @@ export default function EditingControls() {
                   />
                 </div>
                 <div>
-                  <Label className=" block mb-6">Shadowz</Label>
+                  <Label className=" block mb-6">Shadowz {shadowz}</Label>
                   <Slider
                     max={100}
                     step={1}
@@ -132,7 +163,7 @@ export default function EditingControls() {
                   />
                 </div>
                 <div>
-                  <Label className=" block mb-6">ShadowK</Label>
+                  <Label className=" block mb-6">ShadowK {shadowk}</Label>
                   <Slider
                     max={100}
                     min={-100}

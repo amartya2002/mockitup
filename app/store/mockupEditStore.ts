@@ -1,25 +1,51 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import domToImage from "dom-to-image";
-import { MutableRefObject } from "react";
-const mockupStore = create(
-  persist(
-    () => ({
-      title: "Mockitup",
-      outerPadding: 24, // Background Padding / Background
-      outerCornerRadius: 0,
-      innerBorder: 0, // Image Border / Border
-      innerCornerRadius: 0,
-      shadowx: 0,
-      shadowy: 0,
-      shadowz: 0,
-      shadowk: -20,
-    }),
-    {
-      name: "User Preference",
-    }
-  )
-);
+// const mockupStore = create(
+//   persist(
+//     () => ({
+//       title: "Mockitup",
+//       outerPadding:"", // Background Padding / Background
+//       outerCornerRadius: 10,
+//       innerBorder: 0, // Image Border / Border
+//       innerCornerRadius: 0,
+//       shadowx: 50,
+//       shadowy: 50,
+//       shadowz: 10,
+//       shadowk: -20,
+//     }),
+//     {
+//       name: "User Preference",
+//     }
+//   )
+// );
+
+type MockupStore = {
+  title: string,
+  outerPadding: number, // Background Padding / Background
+  outerCornerRadius: number,
+  innerBorder: number, // Image Border / Border
+  innerCornerRadius: number,
+  shadowx: number,
+  shadowy: number,
+  shadowz: number,
+  shadowk: number,
+  zoom: number
+};
+
+const mockupStore = create<MockupStore>((set) => ({
+  title: "Mockitup",
+  outerPadding: 24, // Background Padding / Background
+  outerCornerRadius: 10,
+  innerBorder: 0, // Image Border / Border
+  innerCornerRadius: 0,
+  shadowx: -2,
+  shadowy: 23,
+  shadowz: 26,
+  shadowk: -30,
+  zoom: 50
+}))
+
 
 type ColorStoreState = {
   selectedColor: string;
@@ -54,6 +80,57 @@ interface ImageExportStoreState {
   exportImage: any;
 }
 
+// const useImageExportStore = create<ImageExportStoreState>((set) => ({
+//   targetDivRef: null,
+//   setTargetDivRef: (ref: any) => set({ targetDivRef: ref }),
+//   exportImage: () => {
+//     const { targetDivRef } = useImageExportStore.getState();
+//     if (!targetDivRef) {
+//       console.error("Target div reference is not set");
+//       return;
+//     }
+
+//     const exportContainer = targetDivRef.cloneNode(true);
+
+//     exportContainer.style.width = "1920px";
+//     exportContainer.style.height = "1080px";
+    
+
+//     document.body.appendChild(exportContainer);
+
+//     const exportOptions = {
+//       bgcolor: '#ffffff',
+//       width : 1920,
+//       height : 1080,
+
+      
+//     };
+
+//     domToImage
+//       .toPng(exportContainer, exportOptions)
+//       .then((dataUrl) => {
+//         const link = document.createElement("a");
+//         link.download = "mockitup.png";
+//         link.href = dataUrl;
+//         link.click();
+
+        
+//         document.body.removeChild(exportContainer);
+//       })
+//       .catch((error) => {
+//         console.error("Error exporting image:", error);
+       
+//         document.body.removeChild(exportContainer);
+//       });
+//   },
+// }));
+
+
+
+
+
+
+
 const useImageExportStore = create<ImageExportStoreState>((set) => ({
   targetDivRef: null,
   setTargetDivRef: (ref: any) => set({ targetDivRef: ref }),
@@ -64,19 +141,44 @@ const useImageExportStore = create<ImageExportStoreState>((set) => ({
       return;
     }
 
+      // Clone the target div to create a hidden container for export
+      const exportContainer = targetDivRef.cloneNode(true);
+      // Apply fixed dimensions to the export container
+      exportContainer.style.width = "1920px";
+      exportContainer.style.height = "1440px";
+      // Set background color or other export-specific styles if needed
+  
+      document.body.appendChild(exportContainer);
+
+    const exportOptions = {
+      bgcolor: '#ffffff',
+      // 2743 1543 - 1920 1080
+    };
+
     domToImage
-      .toPng(targetDivRef)
+      .toPng(exportContainer)
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.download = "mockitup.png";
         link.href = dataUrl;
         link.click();
+        document.body.removeChild(exportContainer);
       })
       .catch((error) => {
         console.error("Error exporting image:", error);
+        document.body.removeChild(exportContainer);
       });
   },
 }));
+
+
+
+
+
+
+
+
+
 
 export { useImageStore, useColorStore, mockupStore, useImageExportStore };
 

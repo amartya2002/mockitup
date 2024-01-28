@@ -3,7 +3,7 @@ import EditingControls from "./editingControls";
 
 export default function Bottombar() {
   return (
-    <div className=" h-48 w-full  bottom-0   border  overflow-auto  ">
+    <div className=" h-72 w-full  bottom-10 fixed  border-t  overflow-auto  ">
       <EditingControls />
     </div>
   );

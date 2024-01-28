@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gradient-to-tr from-red-100 to-white dark:from-sky-950 dark:to-black`}>
+      <body className={`${inter.className} bg-gradient-to-tr from-stonpe-200 to-whpite dark:from-[#2f0f0f] dark:to-black`}>
         <ThemeProvider
       
           attribute="class"
