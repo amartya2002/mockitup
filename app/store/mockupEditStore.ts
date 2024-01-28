@@ -1,36 +1,19 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import domToImage from "dom-to-image";
-// const mockupStore = create(
-//   persist(
-//     () => ({
-//       title: "Mockitup",
-//       outerPadding:"", // Background Padding / Background
-//       outerCornerRadius: 10,
-//       innerBorder: 0, // Image Border / Border
-//       innerCornerRadius: 0,
-//       shadowx: 50,
-//       shadowy: 50,
-//       shadowz: 10,
-//       shadowk: -20,
-//     }),
-//     {
-//       name: "User Preference",
-//     }
-//   )
-// );
+
 
 type MockupStore = {
-  title: string,
-  outerPadding: number, // Background Padding / Background
-  outerCornerRadius: number,
-  innerBorder: number, // Image Border / Border
-  innerCornerRadius: number,
-  shadowx: number,
-  shadowy: number,
-  shadowz: number,
-  shadowk: number,
-  zoom: number
+  title: string;
+  outerPadding: number; // Background Padding / Background
+  outerCornerRadius: number;
+  innerBorder: number; // Image Border / Border
+  innerCornerRadius: number;
+  shadowx: number;
+  shadowy: number;
+  shadowz: number;
+  shadowk: number;
+  zoom: number;
 };
 
 const mockupStore = create<MockupStore>((set) => ({
@@ -43,9 +26,8 @@ const mockupStore = create<MockupStore>((set) => ({
   shadowy: 23,
   shadowz: 26,
   shadowk: -30,
-  zoom: 50
-}))
-
+  zoom: 50,
+}));
 
 type ColorStoreState = {
   selectedColor: string;
@@ -80,54 +62,6 @@ interface ImageExportStoreState {
   exportImage: any;
 }
 
-// const useImageExportStore = create<ImageExportStoreState>((set) => ({
-//   targetDivRef: null,
-//   setTargetDivRef: (ref: any) => set({ targetDivRef: ref }),
-//   exportImage: () => {
-//     const { targetDivRef } = useImageExportStore.getState();
-//     if (!targetDivRef) {
-//       console.error("Target div reference is not set");
-//       return;
-//     }
-
-//     const exportContainer = targetDivRef.cloneNode(true);
-
-//     exportContainer.style.width = "1920px";
-//     exportContainer.style.height = "1080px";
-    
-
-//     document.body.appendChild(exportContainer);
-
-//     const exportOptions = {
-//       bgcolor: '#ffffff',
-//       width : 1920,
-//       height : 1080,
-
-      
-//     };
-
-//     domToImage
-//       .toPng(exportContainer, exportOptions)
-//       .then((dataUrl) => {
-//         const link = document.createElement("a");
-//         link.download = "mockitup.png";
-//         link.href = dataUrl;
-//         link.click();
-
-        
-//         document.body.removeChild(exportContainer);
-//       })
-//       .catch((error) => {
-//         console.error("Error exporting image:", error);
-       
-//         document.body.removeChild(exportContainer);
-//       });
-//   },
-// }));
-
-
-
-
 
 
 
@@ -141,17 +75,15 @@ const useImageExportStore = create<ImageExportStoreState>((set) => ({
       return;
     }
 
-      // Clone the target div to create a hidden container for export
-      const exportContainer = targetDivRef.cloneNode(true);
-      // Apply fixed dimensions to the export container
-      exportContainer.style.width = "1920px";
-      exportContainer.style.height = "1440px";
-      // Set background color or other export-specific styles if needed
-  
-      document.body.appendChild(exportContainer);
+    const exportContainer = targetDivRef.cloneNode(true);
+
+    exportContainer.style.width = "1920px";
+    exportContainer.style.height = "1440px";
+
+    document.body.appendChild(exportContainer);
 
     const exportOptions = {
-      bgcolor: '#ffffff',
+      bgcolor: "#ffffff",
       // 2743 1543 - 1920 1080
     };
 
@@ -171,17 +103,67 @@ const useImageExportStore = create<ImageExportStoreState>((set) => ({
   },
 }));
 
-
-
-
-
-
-
-
-
-
 export { useImageStore, useColorStore, mockupStore, useImageExportStore };
+// const mockupStore = create(
+//   persist(
+//     () => ({
+//       title: "Mockitup",
+//       outerPadding:"", // Background Padding / Background
+//       outerCornerRadius: 10,
+//       innerBorder: 0, // Image Border / Border
+//       innerCornerRadius: 0,
+//       shadowx: 50,
+//       shadowy: 50,
+//       shadowz: 10,
+//       shadowk: -20,
+//     }),
+//     {
+//       name: "User Preference",
+//     }
+//   )
+// );
 
+// const useImageExportStore = create<ImageExportStoreState>((set) => ({
+//   targetDivRef: null,
+//   setTargetDivRef: (ref: any) => set({ targetDivRef: ref }),
+//   exportImage: () => {
+//     const { targetDivRef } = useImageExportStore.getState();
+//     if (!targetDivRef) {
+//       console.error("Target div reference is not set");
+//       return;
+//     }
+
+//     const exportContainer = targetDivRef.cloneNode(true);
+
+//     exportContainer.style.width = "1920px";
+//     exportContainer.style.height = "1080px";
+
+//     document.body.appendChild(exportContainer);
+
+//     const exportOptions = {
+//       bgcolor: '#ffffff',
+//       width : 1920,
+//       height : 1080,
+
+//     };
+
+//     domToImage
+//       .toPng(exportContainer, exportOptions)
+//       .then((dataUrl) => {
+//         const link = document.createElement("a");
+//         link.download = "mockitup.png";
+//         link.href = dataUrl;
+//         link.click();
+
+//         document.body.removeChild(exportContainer);
+//       })
+//       .catch((error) => {
+//         console.error("Error exporting image:", error);
+
+//         document.body.removeChild(exportContainer);
+//       });
+//   },
+// }));
 // const useToggleStore = create((set) => ({
 //   isToggled: false,
 //   toggleState: () =>

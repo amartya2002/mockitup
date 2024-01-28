@@ -97,7 +97,7 @@ export default function RenderViewTest() {
 
       <div className="flex justify-center items-center h-full w-full">
         <div
-          className="w-[99%] h-[99%] items-center justify-center flex  "
+          className="w-[70%] h-[70%] items-center justify-center flex  "
           ref={divRef}
           style={{
             background: selectedColor,
