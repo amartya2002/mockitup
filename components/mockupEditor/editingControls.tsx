@@ -59,8 +59,8 @@ export default function EditingControls() {
         <div>
           <Label className=" block mb-6">Padding {outerPadding} </Label>
           <Slider
-            max={100}
-            step={1}
+            max={128}
+            step={8}
             min={0}
             value={[outerPadding]}
             onValueChange={([outerPadding]) =>

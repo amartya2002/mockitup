@@ -13,9 +13,9 @@ export default function MockupEditor() {
           <Sidebar />
         </div>
       </div>
-      {/* <div className="md:hidden">
+      <div className="md:hidden">
         <Bottombar />
-      </div> */}
+      </div>
     </>
   );
 }

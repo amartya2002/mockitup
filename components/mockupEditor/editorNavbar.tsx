@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { useImageExportStore } from "@/app/store/mockupEditStore";
 import { DownloadIcon } from "@radix-ui/react-icons";
 import { ModeToggle } from "../ui/theme-toggle";
+import ExportOptions from "./exportOptions";
 
 export default function EditorNavbar() {
   const { exportImage } = useImageExportStore();
@@ -20,7 +21,7 @@ export default function EditorNavbar() {
         </div>
         <div className="gap-2 items-center flex">
           <ResetModal />
-          <Button
+          {/* <Button
             className="border-2 border-zinc-200 px-4 rounded-lg shadow-none"
             size="sm"
             onClick={exportImage}
@@ -28,7 +29,8 @@ export default function EditorNavbar() {
           >
             Export&nbsp;
             <DownloadIcon height={14} />
-          </Button>
+          </Button> */}
+          <ExportOptions/>
           <ModeToggle />
         </div>
       </div>

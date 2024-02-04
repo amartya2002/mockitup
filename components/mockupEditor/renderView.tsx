@@ -51,29 +51,68 @@ export default function RenderView() {
   // }, [ref])
 
   return (
+    // <div className=" flex justify-center items-center max-w-2xl  mx-auto h-full px-4 ">
+    //   <div className="overflow-scrol" style={{
+    //     //  width: `${zoom}px`
+    //    }}>
+    //     <div
+    //       ref={divRef}
+    //       style={{
+    //         padding: `${outerPadding}px`,
+    //         borderRadius: `${outerCornerRadius}px`,
+    //         background: selectedColor,
+    //       }}
+    //     >
+    //       <div
+    //         className="bg-zinc-500/70 backdrop-blur-lg"
+    //         style={{
+    //           borderRadius: `${innerCornerRadius}px`,
+    //           padding: `${innerBorder}px`,
+    //           boxShadow: `${shadowx}px ${shadowy}px ${shadowz}px ${shadowk}px #000`,
+    //         }}
+    //       >
+    //         <div className="overflow-sroll" >
+    //           <img
+    //             className=""
+    //             src={image || ""}
+    //             alt="Uploaded"
+    //             style={{
+    //               borderRadius: `${innerCornerRadius}px`,
+    //             }}
+    //           />
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+
     <div className=" flex justify-center items-center max-w-2xl  mx-auto h-full px-4 ">
-      <div className="overflow-scroll" style={{
-         width: `${zoom}px`
+      <div className="overflow-scrol " style={{
+        //  width: `${zoom}px`
        }}>
         <div
           ref={divRef}
+          className=""
           style={{
             padding: `${outerPadding}px`,
+        
+
             borderRadius: `${outerCornerRadius}px`,
             background: selectedColor,
           }}
         >
           <div
-            className="bg-zinc-500/70 backdrop-blur-lg"
+            className="bg-zinc-500/70 backdrop-blur-lg "
             style={{
               borderRadius: `${innerCornerRadius}px`,
               padding: `${innerBorder}px`,
               boxShadow: `${shadowx}px ${shadowy}px ${shadowz}px ${shadowk}px #000`,
+
             }}
           >
-            <div className="overflow-scroll" >
+            <div className="overflow-sroll " >
               <img
-                className=""
+                className=" "
                 src={image || ""}
                 alt="Uploaded"
                 style={{
@@ -85,22 +124,7 @@ export default function RenderView() {
         </div>
       </div>
     </div>
-
-    //  <div className="flex justify-center items-center h-full bg-red-300">
-    //   <div className="overflow-scroll flex justify-center items-center h-full  " style={{
-    //     width: `${zoom}px`
-    //   }}>
-    //     <img
-    //       className=""
-    //       src={image || ""}
-    //       alt="Uploaded"
-    //       style={{
-
-    //         borderRadius: `${innerCornerRadius}px`,
-
-    //       }}
-    //     />
-    //   </div>
-    // </div>
   );
 }
+
+

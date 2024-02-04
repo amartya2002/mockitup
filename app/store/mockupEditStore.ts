@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import domToImage from "dom-to-image";
+import React from "react";
 
 
 type MockupStore = {
@@ -18,7 +19,7 @@ type MockupStore = {
 
 const mockupStore = create<MockupStore>((set) => ({
   title: "Mockitup",
-  outerPadding: 24, // Background Padding / Background
+  outerPadding: 64, // Background Padding / Background
   outerCornerRadius: 10,
   innerBorder: 0, // Image Border / Border
   innerCornerRadius: 0,
@@ -28,6 +29,17 @@ const mockupStore = create<MockupStore>((set) => ({
   shadowk: -30,
   zoom: 50,
 }));
+
+interface ExportOptionsStoreState {
+  divRef: React.RefObject<any>;
+  setDivRef: (ref: React.RefObject<any>) => void;
+}
+
+const useExportOptionsStore = create<ExportOptionsStoreState>((set) => ({
+  divRef: React.createRef(),
+  setDivRef: (ref) => set({ divRef: ref }),
+}));
+
 
 type ColorStoreState = {
   selectedColor: string;
@@ -77,8 +89,10 @@ const useImageExportStore = create<ImageExportStoreState>((set) => ({
 
     const exportContainer = targetDivRef.cloneNode(true);
 
-    exportContainer.style.width = "1920px";
-    exportContainer.style.height = "1440px";
+    // exportContainer.style.width = "1920px";
+    // exportContainer.style.height = "1440px";
+    const scale = 2; // Change this value as needed
+    // exportContainer.style.transform = `scale(${scale})`;
 
     document.body.appendChild(exportContainer);
 
@@ -103,7 +117,7 @@ const useImageExportStore = create<ImageExportStoreState>((set) => ({
   },
 }));
 
-export { useImageStore, useColorStore, mockupStore, useImageExportStore };
+export { useImageStore, useColorStore, mockupStore, useImageExportStore, useExportOptionsStore };
 // const mockupStore = create(
 //   persist(
 //     () => ({
