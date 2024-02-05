@@ -44,12 +44,19 @@ const useExportOptionsStore = create<ExportOptionsStoreState>((set) => ({
 type ColorStoreState = {
   selectedColor: string;
   setSelectedColor: (color: string) => void;
+  borderColor: string;
+  setBorderColor: (color: string) => void;
 };
 
 const useColorStore = create<ColorStoreState>((set) => ({
   selectedColor:
-    "linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))",
+    "linear-gradient(to right, #F7D2E3, #D4A5A5)",
   setSelectedColor: (color) => set({ selectedColor: color }),
+
+  borderColor:
+  "rgb(185, 185, 185, 0.3)",
+setBorderColor: (color) => set({ borderColor: color }),
+
 }));
 
 interface Image {

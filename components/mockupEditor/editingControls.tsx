@@ -1,6 +1,7 @@
 "use client";
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
+import BorderColorSelector from "./borderColorSelector";
 import ColorSelector from "./colorSelector";
 import { mockupStore } from "@/app/store/mockupEditStore";
 import {
@@ -21,37 +22,13 @@ export default function EditingControls() {
   const shadowk = mockupStore((state) => state.shadowk);
   const zoom = mockupStore((state) => state.zoom);
 
-
   return (
     <>
-      <div className="py-8 px-6 space-y-8">
+      <div className="py-8 px-6 space-y-8 ">
         <div>
           <Label className=" block mb-3">Padding Color</Label>
           <ColorSelector />
         </div>
-
-
-        <div>
-          <Label className=" block mb-6">Zoom {zoom} </Label>
-          <Slider
-            max={1000}
-            step={1}
-            min={0}
-            value={[zoom]}
-            onValueChange={([zoom]) =>
-              mockupStore.setState({ zoom })
-            }
-            className="w-full"
-          />
-        </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -59,8 +36,8 @@ export default function EditingControls() {
         <div>
           <Label className=" block mb-6">Padding {outerPadding} </Label>
           <Slider
-            max={128}
-            step={8}
+            max={130}
+            step={0.01}
             min={0}
             value={[outerPadding]}
             onValueChange={([outerPadding]) =>
@@ -71,7 +48,7 @@ export default function EditingControls() {
         </div>
 
         {/* Outer Corner Radius  */}
-        <div>
+        {/* <div>
           <Label className=" block mb-6">
             Outer Corner Radius {outerCornerRadius}
           </Label>
@@ -85,9 +62,13 @@ export default function EditingControls() {
             }
             className="w-full"
           />
-        </div>
+        </div> */}
 
         {/* Inner Border */}
+        <div>
+          <Label className=" block mb-3">Border Color</Label>
+          <BorderColorSelector />
+        </div>
         <div>
           <Label className=" block mb-6">Image Border {innerBorder}</Label>
           <Slider

@@ -35,6 +35,8 @@ export default function RenderViewTest() {
 
   const { image } = useImageStore();
   const { selectedColor } = useColorStore();
+  const { borderColor } = useColorStore();
+
   const outerPadding = mockupStore((state) => state.outerPadding);
   const innerBorder = mockupStore((state) => state.innerBorder);
   const outerCornerRadius = mockupStore((state) => state.outerCornerRadius);
@@ -52,8 +54,7 @@ export default function RenderViewTest() {
 
   return (
     <>
-      <main className="min-h-screen flex justify-center items-center  ">
-       
+      <main className="min-h-screen flex justify-center items-center   ">
         <Resizable
           enable={{ left: true, right: true }}
           maxWidth={650}
@@ -63,12 +64,16 @@ export default function RenderViewTest() {
           onResizeStart={() => setShowWidth(true)}
           onResizeStop={() => setShowWidth(false)}
         >
-          <div className="rounded-2xl shadow-lg p-2 " 
-          style={{
-            background: selectedColor
-          }}>
+          <div
+            className="rounded-2xl shadow-xl transition-all ease-out   "
+            style={{
+              padding: `${outerPadding === 0 ? 0 : 7}px`,
+
+              background: selectedColor,
+            }}
+          >
             <div
-              className="overflow-hidden mb-2 transition-all ease-out flex justify-center items-center "
+              className="overflow-hidden transition-all ease-out flex justify-center items-center "
               style={{
                 background: selectedColor,
                 padding: `${outerPadding}px`,
@@ -78,10 +83,11 @@ export default function RenderViewTest() {
               <div
                 className="transition-all ease-out"
                 style={{
-                  background: "gray",
+                  background: `${borderColor}`,
                   padding: `${innerBorder}px`,
                   borderRadius: `${innerCornerRadius}px`,
                   boxShadow: `${shadowx}px ${shadowy}px ${shadowz}px ${shadowk}px #000`,
+                  backdropFilter: 'blur(25px)'
                 }}
               >
                 <img
@@ -91,20 +97,21 @@ export default function RenderViewTest() {
                     borderRadius: `${innerCornerRadius}px`,
                   }}
                 />
-                {/* <div className="bg-red-400 w-72 h-72">
-
-              </div> */}
+  
               </div>
             </div>
           </div>
 
-          <Button className="mt-6 justify-center w-full" size="sm" onClick={() => setWidth("auto")} variant="ghost">
+          <Button
+            className="mt-6 justify-center w-full"
+            size="sm"
+            onClick={() => setWidth("auto")}
+            variant="ghost"
+          >
             <ResetIcon className="mr-2" />
             Reset width
           </Button>
         </Resizable>
-   
-    
       </main>
     </>
   );

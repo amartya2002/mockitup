@@ -7,7 +7,7 @@ export default function MockupEditor() {
   return (
     <>
       <EditorNavbar />
-      <div className="flex  mb-12 h-[90vh]">
+      <div className="flex h-[90vh]">
         <CenterViewTest />
         <div className="hidden md:block">
           <Sidebar />
