@@ -1,9 +1,24 @@
+"use client";
 import MockupEditor from "@/components/mockupEditor/mockupEditor";
+import { useMediaQuery } from "react-responsive";
 
 export default function Home() {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1000px)" });
+
   return (
-<main>
-<MockupEditor/>
-</main>
-  )
+    <div>
+      {isTabletOrMobile ? (
+        <div className="flex justify-center items-center h-screen">
+         <div className=" p-6 ">
+      <h1 className="text-2xl font-semibold mb-2">Mobile View is <span className="italic text-red-500">almost ready</span>.</h1>
+      <p className=" text-zinc-500 font-sans ">
+        We're working on a fantastic mobile experience for you. For now, please enjoy our website on your desktop browser.
+      </p>
+    </div>
+        </div>
+      ) : (
+        <MockupEditor />
+      )}
+    </div>
+  );
 }
